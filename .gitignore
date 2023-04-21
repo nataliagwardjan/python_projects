@@ -1,3 +1,5 @@
 .DS_Store
 .idea
 .gitignore
+e_mail_project/e_mail_data.py
+*/__pycache__/
