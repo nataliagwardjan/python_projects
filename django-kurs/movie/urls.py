@@ -21,8 +21,11 @@ from django.conf import settings
 from django.conf.urls.static import static
 # from django.conf import settings
 # from django.conf.urls.static import static - tylko lokalnie, nie robić tak na produkcji!
+from django.contrib.auth import views as auth_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('movies_web/', include('movies_web.urls'))
+    path('movies_web/', include('movies_web.urls')),
+    path('login/', auth_view.LoginView.as_view(), name = 'login'),
+    path('logout/', auth_view.LogoutView.as_view(), name = 'logout')
 ] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT) # tylko na local

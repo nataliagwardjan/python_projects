@@ -10,12 +10,20 @@
     <link rel="stylesheet" href="{% static 'new.css' %}">
 </head>
 <body>
+    {% if user.is_authenticated %}
+        Username: {{ user.username }}
+        <a href="{% url 'logout' %}">logout</a>
+    {% else %}
+        <a href="{% url 'login' %}">login</a>
+    {% endif %}
+
+    <hr>
+    <h1>Welcome!</h1>
+    <p>Adding new movie</p>
+    <a href="{% url 'add_new_movie' %}">Add</a>
     {% if movies|length == 0 %}
         <h2>There is no movies</h2>
     {% else %}
-        <h1>Welcome!</h1>
-        <p>Adding new movie</p>
-        <a href="{% url 'add_new_movie' %}">Add</a>
         <h2>There are {{ movies|length }} movies:</h2>
 
         {% for movie in movies %}
