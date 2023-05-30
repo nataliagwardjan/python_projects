@@ -1,15 +1,8 @@
-{% load static %}
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <link rel="stylesheet" href="{% static 'new.css' %}">
-</head>
-<body>
+{% extends 'main.html' %}
+{% load bootstrap %}
+
+{% block title %} MOVIE LIST {% endblock %}
+{% block site %}
     {% if user.is_authenticated %}
         Username: {{ user.username }}
         <a href="{% url 'logout' %}">logout</a>
@@ -27,11 +20,16 @@
         <h2>There are {{ movies|length }} movies:</h2>
 
         {% for movie in movies %}
-            <h3>{{ movie }}</h3>
+            <h3>{{ movie.id }}. {{ movie }}</h3>
             <p>{{ movie.description }}</p>
-            <a href="{% url 'update_movie' movie.id %}">Edit</a>
-            <a href="{% url 'remove_movie' movie.id %}">Delete</a>
+            <p>
+                <img src="/media/{{ movie.poster }}" class="movie-poster">
+            </p>
+            <p>
+                <a href="{% url 'update_movie' movie.id %}">Edit</a>
+                <a href="{% url 'remove_movie' movie.id %}">Delete</a>
+            </p>
+            <br>
         {% endfor %}
     {% endif %}
-</body>
-</html>
+{% endblock %}
