@@ -27,3 +27,7 @@ class Movie(models.Model):
     def title_with_year(self):
         return f"{self.title} ({self.year})"
 
+class Review(models.Model):
+    review_description = models.TextField(default = "", blank = True)
+    mark = models.PositiveSmallIntegerField(default = 5)
+    movie = models.ForeignKey(Movie, on_delete = models.CASCADE)
