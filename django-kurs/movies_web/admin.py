@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Movie, MovieAdditionalInfo, Review
+from .models import Movie, MovieAdditionalInfo, Review, Actor
 
 # Register your models here.
 # First option
@@ -17,3 +17,4 @@ class MovieAdmin(admin.ModelAdmin):
 
 admin.site.register(MovieAdditionalInfo)
 admin.site.register(Review)
+admin.site.register(Actor)

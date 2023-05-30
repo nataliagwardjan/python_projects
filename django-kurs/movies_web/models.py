@@ -31,3 +31,8 @@ class Review(models.Model):
     review_description = models.TextField(default = "", blank = True)
     mark = models.PositiveSmallIntegerField(default = 5)
     movie = models.ForeignKey(Movie, on_delete = models.CASCADE)
+
+class Actor(models.Model):
+    firstname = models.CharField(max_length = 32, default = "John")
+    lastname = models.CharField(max_length = 32, default = "Smith")
+    movies = models.ManyToManyField(Movie)
