@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Movie
+from .models import Movie, MovieAdditionalInfo
 
 # Register your models here.
 # First option
@@ -13,3 +13,6 @@ class MovieAdmin(admin.ModelAdmin):
     list_display = ['title', 'year'] # jak ma być wyświetlana lista obiektów
     list_filter = ['year'] # dodajemy filtr by wybrać np. tylko dany rok
     search_fields = ['title'] # dodajemy opcje szukania w tytule
+
+
+admin.site.register(MovieAdditionalInfo)
