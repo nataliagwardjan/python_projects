@@ -5,8 +5,35 @@
 {% block site %}
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
-        {{ form|bootstrap }}
-        <button type="submit">add movie/update movie</button>
+        {{ movie_form|bootstrap }}
+        {{ additional_info_form|bootstrap }}
+        {% if is_new %}
+            <button type="submit">add movie</button>
+        {% else %}
+            <button type="submit">edit movie</button>
+        {% endif %}
     </form>
+    <h2>Actors: </h2>
+    {% if not is_new %}
+        {% for actor in actors %}
+            <p>{{ actor.firstname }} {{ actor.lastname }}</p>
+        {% endfor %}
+    {% endif %}
+
+    <h2>Mark a movie</h2>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ review_form|bootstrap }}
+        <button type="submit">Submit</button>
+    </form>
+    <h2>Movie Reviews</h2>
+    {% if not is_new %}
+        {% for review in reviews %}
+            <p>Mark (stars): {{ review.mark }}</p>
+            <p>Description: {{ review.review_description }}</p>
+        {% endfor %}
+    {% endif %}
+
+
     <a href="{% url 'get_all_movies' %}">Back</a>
 {% endblock %}

@@ -35,4 +35,4 @@ class Review(models.Model):
 class Actor(models.Model):
     firstname = models.CharField(max_length = 32, default = "John")
     lastname = models.CharField(max_length = 32, default = "Smith")
-    movies = models.ManyToManyField(Movie)
+    movies = models.ManyToManyField(Movie, related_name= 'actors')
