@@ -28,7 +28,7 @@ SECRET_KEY = config('SECRET_KEY')
 DEBUG = config('DEBUG', default = False, cast = bool) # dobre na dev lub test, ale na produkcji usunąć by nie można było podejrzeć i łatwo shakować naszych urls
 # jak zmienimy na False to trzeba dodać allowed_hosts. "127.0.0.1" - localhost
 
-ALLOWED_HOSTS = ['127.0.0.1:8000']
+ALLOWED_HOSTS = []
 
 # Application definition
 
