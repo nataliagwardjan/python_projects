@@ -2,4 +2,6 @@
 .idea
 .gitignore
 e_mail_project/e_mail_data.py
-*/__pycache__/
+**/__pycache__/
+**/venv
+**/.*

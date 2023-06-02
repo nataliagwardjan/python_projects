@@ -10,7 +10,10 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
+import os
 from pathlib import Path
+from decouple import config
+from dj_database_url import parse as dburl
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,14 +23,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-u4(8$r*ywmx8x4(iz%h-0jwqwy96m5sjcdufywx1a^8pyhiu-r'
-
+SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True # dobre na dev lub test, ale na produkcji usunąć by nie można było podejrzeć i łatwo shakować naszych urls
+DEBUG = config('DEBUG', default = False, cast = bool) # dobre na dev lub test, ale na produkcji usunąć by nie można było podejrzeć i łatwo shakować naszych urls
 # jak zmienimy na False to trzeba dodać allowed_hosts. "127.0.0.1" - localhost
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = ['127.0.0.1:8000']
 
 # Application definition
 
@@ -76,6 +77,7 @@ WSGI_APPLICATION = 'movie.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
+default_dburl = 'sqlite:///' + os.path.join(BASE_DIR, 'db.sqlite3')
 
 DATABASES = {
     'default': {
