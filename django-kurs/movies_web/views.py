@@ -3,6 +3,18 @@ from django.http import HttpResponse
 from .models import Movie, MovieAdditionalInfo, Review, Actor
 from .forms import MovieForm, MovieAdditionalInfoForm, ReviewForm, ActorForm
 from django.contrib.auth.decorators import login_required
+from rest_framework import viewsets
+from django.contrib.auth.models import User
+from .serializers import UserSerializer, MovieSerializer
+
+class UserView(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+
+class MovieView(viewsets.ModelViewSet):
+    queryset = Movie.objects.all()
+    serializer_class = MovieSerializer
+
 
 # Create your views here.
 def all_movies(request):

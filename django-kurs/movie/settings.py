@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'movies_web',
-    'bootstrapform'
+    'bootstrapform',
+    'rest_framework'
 ]
 
 MIDDLEWARE = [
